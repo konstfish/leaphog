@@ -42,7 +42,7 @@ class SampleListener(Leap.Listener):
         inFor = False
         for hand in frame.hands:
             inFor = True
-            handType = "Left hand" if hand.is_left else "Right hand"
+            handType = "Left" if hand.is_left else "Right"
 
             # Get the hand's normal vector and direction
             normal = hand.palm_normal
@@ -64,18 +64,18 @@ class SampleListener(Leap.Listener):
             speedl = 0
             speedr = 0
 
-            if(posi > 70):
-                #print("back")
-                speedr += int((400 * (posi / 100)) * -1)
-                speedl += int((400 * (posi / 100)) * -1)
+            #if(posi > 70):
+            #    #print("back")
+            #    speedr += int((400 * (posi / 100)) * -1)
+            #    speedl += int((400 * (posi / 100)) * -1)
 
-            elif(posi < -70):
+            if(posi < -70):
                 #print("vor")
                 speedr += int((400 * (posi / 100)) * -1)
                 speedl += int((400 * (posi / 100)) * -1)
 
             max = 120
-
+            print(str(deg) + " " + handType)
             if(deg > 25):
                 #print(handType + " Links Code " + str(deg))
                 if deg < max:
@@ -85,7 +85,8 @@ class SampleListener(Leap.Listener):
                 per -= 200
                 speedr += int(400 * (deg / 100))
                 speedl -= int(400 * (deg / 100))
-            elif(deg < -25):
+
+            if(deg < -25):
                 #print(handType + " Rechts Code " + str(deg))
                 if(deg > (max * -1)):
                     per = int((deg / (max)) * 1000)
