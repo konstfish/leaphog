@@ -3,6 +3,8 @@ from hedgehog.client import connect
 
 print("run")
 
+# is scheiße aber juckt mich ned
+
 with connect(emergency=15) as hedgehog:
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(('', 1337))
