@@ -3,11 +3,12 @@ import time
 import random
 import sys
 
-ip = '192.168.1.70'
+IP = '192.168.1.70'
+PORT = 1337
 
 def transmission(r, l):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_addr = (ip, 1337)
+    server_addr = (IP, PORT)
     client_socket.connect(server_addr)
     client_socket.send(str(r) + "." + str(l))
     print("Sent -> R: " + str(r) + " L:" + str(l))

@@ -1,13 +1,18 @@
+#!/usr/bin/env python
+
 import socket
 from hedgehog.client import connect
 
 print("run")
 
-# is scheiße aber juckt mich ned
+IP = "" # blank if you want it to listen to every adress - clients ip if it should only listen to the client
+PORT = 1337
+
+# garbage but i dont care
 
 with connect(emergency=15) as hedgehog:
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(('', 1337))
+    server_socket.bind((IP, PORT))
     server_socket.listen(1)
     while True:
         (client_socket, addr) = server_socket.accept()
@@ -33,6 +38,9 @@ with connect(emergency=15) as hedgehog:
             i += 1
         l = int(l)
         r = int(r)
+
+        # cloud have done this in one line with split() but i wrote this about
+        # 6 monts ago and i dont want to change it without being able to test it
 
         print("R: " + str(r) + " L: " + str(l))
 

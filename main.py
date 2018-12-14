@@ -1,5 +1,5 @@
 # david fischer 2018
-# simples prog um daten vom leap zu lesen und an einen controller (hedgehog) zu senden
+# simple program to read data from the leap motion and send it to a controller (hedgehog)
 
 import sys, thread, time
 import socket
@@ -29,7 +29,7 @@ class SampleListener(Leap.Listener):
 
     def on_frame(self, controller):
         frame = controller.frame()
-        
+
         inFor = False
         # gets hands
         for hand in frame.hands:
@@ -42,20 +42,20 @@ class SampleListener(Leap.Listener):
             deg = normal.roll * Leap.RAD_TO_DEG
             posi = hand.palm_position[2]
             #print(deg)
-            
+
             #sets speeds for left and right servo
             speedl = 0
             speedr = 0
-            
-            
+
+
             if(posi < -70):
                 speedr += int((400 * (posi / 100)) * -1)
                 speedl += int((400 * (posi / 100)) * -1)
 
             max = 120
             print(str(deg) + " " + handType)
-            # if hand rechts (oder links lol)
-            if(deg > 25):               
+            # if hand right (or left lol)
+            if(deg > 25):
                 if deg < max:
                     per = (int((deg / max) * 1000))
                 else:
@@ -64,7 +64,7 @@ class SampleListener(Leap.Listener):
                 speedr += int(400 * (deg / 100))
                 speedl -= int(400 * (deg / 100))
 
-            # if hand rechts (oder links idk)
+            # if hand rechts (or left idk)
             if(deg < -25):
                 if(deg > (max * -1)):
                     per = int((deg / (max)) * 1000)
@@ -76,8 +76,8 @@ class SampleListener(Leap.Listener):
 
             else:
                 per = 0
-            
-            #fixt die speed nummern geht besser aber juckt ned
+
+            # caps the numbers at -800/800 - could have been done better but meh
             if(speedr > 800):
                 speedr = 800
             elif(speedr < -800):
@@ -92,7 +92,7 @@ class SampleListener(Leap.Listener):
             os.system("python send.py " + str(speedr) + " " + str(speedl))
 
         if(not inFor):
-            # falls keine hand drinnen is sendet er 0 0
+            # if there is no hand send 0 0 so the bot stops moving
             os.system("python send.py 0 0")
 
     def state_string(self, state):
