@@ -1,9 +1,9 @@
-# leaphog
+# Leaphog
 Compact program to send data from the Leap Motion Sensor to the Hedgehog (or any other controller that can run python)
 
-## setup
+## Setup
 This script requires Python2.7 and the [Leap Motion Drivers](https://www.leapmotion.com/setup/desktop/).
-I don't want to recompile the library so this only works on Windows and  with Python2.7.
+I don't want to recompile the library so this only works on Windows.
 
 1. Make sure the ports in both server.py and send.py match up and set the correct ip in send.py
 2. Start server.py on the receiving end (hedgehog).
