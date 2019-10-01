@@ -6,7 +6,6 @@ import socket
 import random
 import os
 import sys
-sys.path.append('llib/')
 import Leap
 
 class SampleListener(Leap.Listener):
@@ -86,7 +85,7 @@ class SampleListener(Leap.Listener):
             if(speedl > 800):
                 speedl = 800
             elif(speedl < -800):
-                speedl= 800
+                speedl= -800
 
             print("Sending -> R: " + str(speedr) + " L: " + str(speedl))
             os.system("python send.py " + str(speedr) + " " + str(speedl))
