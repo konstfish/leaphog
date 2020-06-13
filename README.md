@@ -8,7 +8,8 @@ This script requires Python2.7 and the [Leap Motion Drivers](https://www.leapmot
 run: `python2.7 -c "import distutils.sysconfig as c; print(c.PREFIX)"`
 append `/lib/libpython2.7.dylib` to the path
 
-run: ```
+run: 
+```
 install_name_tool -change /Library/Frameworks/Python.framework/Versions/2.7/Python \
 ***python2.7path***/lib/libpython2.7.dylib \
 LeapPython.so
